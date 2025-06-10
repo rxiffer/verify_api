@@ -46,16 +46,18 @@ async def verify_code(payload: VerifyRequest):
 
         user = data[0]
 
-        return {
-            "success": True,
-            "user": {
-                "id": user.get("id"),
-                "firstName": (user.get("full_name") or "").split(" ")[0],
-                "vehicle_reg": user.get("vehicle_reg"),
-                "policy_start": user.get("policy_start"),
-                "policy_end": user.get("policy_end"),
-                "policy_time": user.get("policy_time"),
-                "policy_number": user.get("policy_number"),
-                "vehicle_details": user.get("vehicle_details"),
-            }
-        }
+        return jsonify({
+    "success": True,
+    "user": {
+        "id": user.get("id"),
+        "full_name": user.get("full_name"),  # ✅ Add this line
+        "firstName": (user.get("full_name") or "").split(" ")[0],
+        "vehicle_reg": user.get("vehicle_reg"),
+        "policy_start": user.get("policy_start"),
+        "policy_end": user.get("policy_end"),
+        "policy_time": user.get("policy_time"),
+        "policy_number": user.get("policy_number"),
+        "vehicle_details": user.get("vehicle_details")
+    }
+})
+
