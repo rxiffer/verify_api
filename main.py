@@ -46,7 +46,7 @@ async def verify_code(payload: VerifyRequest):
 
         user = data[0]
 
-        return jsonify({
+        return ({
     "success": True,
     "user": {
         "id": user.get("id"),
